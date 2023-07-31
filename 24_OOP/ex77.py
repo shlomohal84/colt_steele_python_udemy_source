@@ -1,5 +1,5 @@
 class Comment:
-    def __init__(self,username,text,likes = 0):
+    def __init__(self,username,text,likes = 124):
         self.username = username
         self.text = text
         self.likes = likes
@@ -8,4 +8,4 @@ class Comment:
 
 comment1 = Comment("Pussifism", "HAHAHAHA")
 
-print(comment1.text)
+print(f"{comment1.username}: {comment1.text} ({comment1.likes})")

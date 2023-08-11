@@ -10,7 +10,6 @@ class Card:
         return f"{self.value} of {self.suit}"
 
 
-
 class Deck:
     def __init__(self):
         self.suit_lst = ["Hearts", "Diamonds", "Clubs", "Spades"]
@@ -29,7 +28,8 @@ class Deck:
             "Q",
             "K",
         ]
-        self.cards = [[x, y] for x in self.suit_lst for y in self.value_lst]
+        self.cards = [Card(x, y)
+                      for x in self.suit_lst for y in self.value_lst]
 
     def __repr__(self):
         return f"Deck of {len(self.cards)} cards"
@@ -37,22 +37,21 @@ class Deck:
     def _deal(self, num=1):
         if num != int(num) or num <= 0:
             raise ValueError(f"Invalid value")
-
-        elif num > len(self.cards):
-            raise ValueError(
-                f"Value {num} is bigger than deck's size of {len(self.cards)}"
-            )
         elif len(self.cards) == 0:
             raise ValueError(f"All cards have been dealt")
-
         elif num == 1:
             return self.cards.pop()
-        hand = self.cards[-1 : -num - 1 : -1]
+        hand = self.cards[-1: -num - 1: -1]
         self.cards = self.cards[:-num]
-        return hand
+        return hand[::-1]
+
+    def shuffle(self):
+        if len(self.cards) < 52:
+            raise ValueError("Only full decks can be shuffled")
+        shuffle(self.cards)
 
     def count(self):
-        return f"{len(self.cards)}"
+        return len(self.cards)
 
     def deal_card(self):
         return self._deal()
@@ -62,7 +61,13 @@ class Deck:
 
 
 deck = Deck()
-# print(deck.cards)
+print(deck)
+
+print(deck.count())
+# print(deck.shuffle())
+
 # print(deck.deal_card())
-print(deck.deal_hand(5))
+print(deck.deal_hand(100))
 # print(len(deck.cards))
+# print(deck)
+# print(deck.shuffle())

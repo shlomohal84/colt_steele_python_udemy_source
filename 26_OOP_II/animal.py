@@ -1,20 +1,27 @@
 class Animal:
-    cool = True
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+
+    def __repr__(self):
+        return f"{self.name} is a {self.species}"
 
     def make_sound(self, sound):
         print(f"This animal says {sound}")
 
 
 class Cat(Animal):
-    pass
+    def __init__(self, name, breed, toy):
+        super().__init__(name, species="Cat")
+        self.breed = breed
+        self.toy = toy
+
+    def play(self):
+        return f"{self.name} plays with {self.toy}"
 
 
-blue = Cat()
-blue.make_sound("MEOW")
-# print(blue.cool)
-# print(Animal.cool)
-# print(Cat.cool)
-
-print(isinstance(blue, object))
-# print(isinstance([1, 2, 3], list))
-# print(isinstance({"a": [1, 2, 3]}, dict))
+blue = Cat("Blue", "Scottish Fold", "String")
+print(blue.species)
+print(blue.breed)
+print(blue.toy)
+print(blue.play())

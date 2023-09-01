@@ -41,3 +41,6 @@ captain_cook = Penguin("Captain Cook")
 # print(f"Captain_Cook is instance of Penguin: {isinstance(captain_cook,Penguin)}")
 # print(f"Captain_Cook is instance of Aquatic: {isinstance(captain_cook,Aquatic)}")
 # print(f"Captain_Cook is instance of Ambulatory: {isinstance(captain_cook,Ambulatory)}")
+
+
+print(Penguin.mro())
